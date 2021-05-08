@@ -3,23 +3,23 @@ const router = express.Router();
 
 router.post("/payment", (req, res) => {
   const validData = () => {
-    const { name, number, cvv, month, year } = req.body;
+    const { cardName, cardNumber, cvv, expiration } = req.body;
+    console.log("🚀 ~ file: index.js ~ line 7 ~ validData ~ req.body", req.body)
     let isValidData = true;
     if (
       !(
-        number &&
-        number.toString().length > 15 &&
-        number.toString().length < 18
+        cardNumber &&
+        cardNumber.toString().length > 15 &&
+        cardNumber.toString().length < 18
       )
     ) {
       return false;
     }
     if (
       !(
-        !!month &&
-        !!year &&
+        !!expiration &&
         !!cvv &&
-        name.length > 0 &&
+        cardName.length > 0 &&
         cvv.length > 0 &&
         cvv.length < 5
       )
@@ -29,12 +29,12 @@ router.post("/payment", (req, res) => {
     return isValidData;
   };
   if (validData()) {
-    res.send({
+    res.json({
       statusCode: 200,
       message: "Success",
     });
   } else {
-    res.send({
+    res.json({
       statusCode: 400,
       message: "Wrong Data",
     });
