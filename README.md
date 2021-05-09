@@ -1,1 +1,7 @@
-# server-payment-clip-exam
+## Para ejecutar la aplicacion
+
+In the project directory, you can run:
+
+### `npm i`
+
+### `npm run dev`
